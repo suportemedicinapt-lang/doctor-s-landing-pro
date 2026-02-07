@@ -1,20 +1,14 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, MessageCircle } from "lucide-react";
-
-interface HeaderProps {
-  nome: string;
-  whatsapp: string;
-}
+import { doctorData } from "@/types/doctor";
 
 // Header/Navbar da página
-// TODO: Conectar props com dados dinâmicos do Med.ID
-const Header = ({ nome, whatsapp }: HeaderProps) => {
+const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // TODO: substituir por link dinâmico do WhatsApp
-  const whatsappLink = `https://wa.me/${whatsapp.replace(/\D/g, '')}?text=Olá, gostaria de agendar uma consulta.`;
+  const whatsappLink = `https://wa.me/${doctorData.whatsapp.replace(/\D/g, '')}?text=Olá, gostaria de agendar uma consulta.`;
 
   const navLinks = [
     { href: "#sobre", label: "Sobre" },
@@ -50,7 +44,7 @@ const Header = ({ nome, whatsapp }: HeaderProps) => {
               isScrolled ? "text-foreground" : "text-primary-foreground"
             }`}
           >
-            Dr(a). {nome}
+            Dr(a). {doctorData.nome}
           </a>
 
           {/* Nav Desktop */}

@@ -1,58 +1,20 @@
-import { Stethoscope, Activity, Pill, FileHeart, Users, HeartPulse } from "lucide-react";
-import type { AreaAtuacao } from "@/types/doctor";
-
-interface ServicesSectionProps {
-  especialidade: string;
-  areasAtuacao: AreaAtuacao[];
-}
+import { Stethoscope, Activity, Pill, FileHeart, Users, HeartPulse, FileSearch, ClipboardList } from "lucide-react";
+import { doctorData, servicosData } from "@/types/doctor";
 
 // Ícones disponíveis para as áreas de atuação
 const iconMap: Record<string, React.ElementType> = {
-  stethoscope: Stethoscope,
-  activity: Activity,
-  pill: Pill,
-  fileHeart: FileHeart,
-  users: Users,
-  heartPulse: HeartPulse,
+  Stethoscope: Stethoscope,
+  Activity: Activity,
+  Pill: Pill,
+  FileHeart: FileHeart,
+  Users: Users,
+  HeartPulse: HeartPulse,
+  FileSearch: FileSearch,
+  ClipboardList: ClipboardList,
 };
 
 // Seção "Áreas de Atuação"
-// TODO: Conectar props com dados dinâmicos do Med.ID
-const ServicesSection = ({ especialidade, areasAtuacao }: ServicesSectionProps) => {
-  // TODO: substituir por áreas de atuação dinâmicas
-  const areasDefault: AreaAtuacao[] = areasAtuacao.length > 0 ? areasAtuacao : [
-    {
-      titulo: "Consultas e Avaliações",
-      descricao: "Avaliação completa do seu estado de saúde com atenção aos seus sintomas e histórico médico.",
-      icone: "stethoscope"
-    },
-    {
-      titulo: "Acompanhamento Contínuo",
-      descricao: "Monitoramento regular para manter sua saúde em dia e prevenir complicações.",
-      icone: "activity"
-    },
-    {
-      titulo: "Orientação sobre Tratamentos",
-      descricao: "Explicações claras sobre opções de tratamento, seus benefícios e cuidados necessários.",
-      icone: "pill"
-    },
-    {
-      titulo: "Exames e Diagnósticos",
-      descricao: "Solicitação e interpretação de exames para um diagnóstico preciso e seguro.",
-      icone: "fileHeart"
-    },
-    {
-      titulo: "Atendimento Familiar",
-      descricao: "Cuidado integral considerando o contexto familiar e social de cada paciente.",
-      icone: "users"
-    },
-    {
-      titulo: "Promoção de Saúde",
-      descricao: "Orientações sobre hábitos saudáveis e prevenção de doenças.",
-      icone: "heartPulse"
-    }
-  ];
-
+const ServicesSection = () => {
   return (
     <section id="servicos" className="py-20 md:py-28 gradient-soft">
       <div className="container">
@@ -65,16 +27,15 @@ const ServicesSection = ({ especialidade, areasAtuacao }: ServicesSectionProps) 
             Como posso ajudar você
           </h2>
           <p className="text-muted-foreground text-lg">
-            {/* TODO: substituir por descrição dinâmica */}
-            Ofereço atendimento em diversas áreas da {especialidade}, 
+            Ofereço atendimento em diversas áreas da {doctorData.especialidade}, 
             sempre com foco na sua saúde e bem-estar.
           </p>
         </div>
 
         {/* Grid de serviços */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {areasDefault.map((area, index) => {
-            const IconComponent = iconMap[area.icone || "stethoscope"] || Stethoscope;
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {servicosData.map((servico, index) => {
+            const IconComponent = iconMap[servico.icone] || Stethoscope;
             
             return (
               <div
@@ -89,10 +50,10 @@ const ServicesSection = ({ especialidade, areasAtuacao }: ServicesSectionProps) 
 
                 {/* Conteúdo */}
                 <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {area.titulo}
+                  {servico.titulo}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  {area.descricao}
+                  {servico.descricao}
                 </p>
               </div>
             );

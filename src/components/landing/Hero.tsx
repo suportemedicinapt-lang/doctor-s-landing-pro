@@ -1,21 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Shield } from "lucide-react";
-
-interface HeroProps {
-  nome: string;
-  especialidade: string;
-  cidadeBairro: string;
-  crm: string;
-  uf: string;
-  foto?: string;
-  whatsapp: string;
-}
+import { doctorData } from "@/types/doctor";
 
 // Componente Hero - Seção principal da landing page
-// TODO: Conectar props com dados dinâmicos do Med.ID
-const Hero = ({ nome, especialidade, cidadeBairro, crm, uf, foto, whatsapp }: HeroProps) => {
-  // TODO: substituir por link dinâmico do WhatsApp
-  const whatsappLink = `https://wa.me/${whatsapp.replace(/\D/g, '')}?text=Olá, gostaria de agendar uma consulta.`;
+const Hero = () => {
+  const whatsappLink = `https://wa.me/${doctorData.whatsapp.replace(/\D/g, '')}?text=Olá, gostaria de agendar uma consulta.`;
 
   return (
     <section className="relative min-h-[90vh] flex items-center gradient-hero overflow-hidden">
@@ -33,24 +22,23 @@ const Hero = ({ nome, especialidade, cidadeBairro, crm, uf, foto, whatsapp }: He
             <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm px-4 py-2 rounded-full border border-primary-foreground/20">
               <Shield className="w-4 h-4" />
               <span className="text-sm font-medium">
-                CRM {crm}/{uf}
+                CRM {doctorData.crm}
               </span>
             </div>
 
             {/* Headline principal */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
               Cuidado em{" "}
-              <span className="text-primary-foreground/90">{especialidade}</span>
+              <span className="text-primary-foreground/90">{doctorData.especialidade}</span>
               <br />
               com foco em{" "}
               <span className="underline decoration-primary-foreground/30 decoration-4 underline-offset-8">
-                {cidadeBairro}
+                {doctorData.endereco}
               </span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-primary-foreground/85 max-w-xl leading-relaxed">
-              {/* TODO: substituir por bioCurta dinâmica */}
               Atendimento humanizado e baseado em evidências para cuidar da sua saúde com atenção e respeito.
             </p>
 
@@ -92,15 +80,13 @@ const Hero = ({ nome, especialidade, cidadeBairro, crm, uf, foto, whatsapp }: He
               {/* Container da foto com efeito */}
               <div className="w-72 h-72 md:w-96 md:h-96 rounded-full bg-primary-foreground/20 backdrop-blur-sm p-2 shadow-glow">
                 <div className="w-full h-full rounded-full bg-secondary overflow-hidden flex items-center justify-center">
-                  {foto ? (
-                    // TODO: substituir por foto dinâmica do médico
+                  {doctorData.foto && !doctorData.foto.includes("{{") ? (
                     <img
-                      src={foto}
-                      alt={`Dr(a). ${nome}`}
+                      src={doctorData.foto}
+                      alt={`Dr(a). ${doctorData.nome}`}
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    // Placeholder quando não há foto
                     <div className="text-center p-8">
                       <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
                         <span className="text-4xl text-muted-foreground">👨‍⚕️</span>
@@ -116,7 +102,7 @@ const Hero = ({ nome, especialidade, cidadeBairro, crm, uf, foto, whatsapp }: He
               {/* Badge flutuante */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-card px-6 py-3 rounded-full shadow-lg border">
                 <p className="font-semibold text-foreground">
-                  Dr(a). {nome}
+                  Dr(a). {doctorData.nome}
                 </p>
               </div>
             </div>

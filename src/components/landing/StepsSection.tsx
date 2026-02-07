@@ -1,15 +1,8 @@
 import { Calendar, ClipboardList, HeartHandshake } from "lucide-react";
-import type { PassoAtendimento } from "@/types/doctor";
-
-interface StepsSectionProps {
-  passos?: PassoAtendimento[];
-}
 
 // Seção "Como funciona o atendimento"
-// TODO: Conectar props com dados dinâmicos do Med.ID
-const StepsSection = ({ passos }: StepsSectionProps) => {
-  // TODO: substituir por passos dinâmicos se necessário
-  const passosDefault: PassoAtendimento[] = passos || [
+const StepsSection = () => {
+  const passos = [
     {
       numero: 1,
       titulo: "Agendamento",
@@ -51,7 +44,7 @@ const StepsSection = ({ passos }: StepsSectionProps) => {
           <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {passosDefault.map((passo, index) => {
+            {passos.map((passo, index) => {
               const IconComponent = icones[index] || Calendar;
               
               return (
@@ -84,7 +77,7 @@ const StepsSection = ({ passos }: StepsSectionProps) => {
                   </div>
 
                   {/* Seta para próximo (mobile) */}
-                  {index < passosDefault.length - 1 && (
+                  {index < passos.length - 1 && (
                     <div className="lg:hidden flex justify-center mt-6">
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                         <span className="text-primary text-lg">↓</span>
