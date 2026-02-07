@@ -4,18 +4,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { PerguntaFAQ } from "@/types/doctor";
-
-interface FAQSectionProps {
-  especialidade: string;
-  perguntas?: PerguntaFAQ[];
-}
+import { doctorData } from "@/types/doctor";
 
 // Seção FAQ
-// TODO: Conectar props com dados dinâmicos do Med.ID
-const FAQSection = ({ especialidade, perguntas }: FAQSectionProps) => {
-  // TODO: substituir por perguntas dinâmicas baseadas na especialidade
-  const perguntasDefault: PerguntaFAQ[] = perguntas || [
+const FAQSection = () => {
+  const perguntas = [
     {
       pergunta: "Como funciona a primeira consulta?",
       resposta: "Na primeira consulta, farei uma avaliação completa do seu histórico de saúde, ouvirei suas queixas e realizarei o exame clínico necessário. É um momento para conhecer você melhor e entender suas necessidades. Reserve aproximadamente 40 a 60 minutos para esse encontro."
@@ -41,7 +34,7 @@ const FAQSection = ({ especialidade, perguntas }: FAQSectionProps) => {
       resposta: "Para remarcar ou cancelar, entre em contato por WhatsApp ou telefone com pelo menos 24 horas de antecedência. Isso permite que outras pessoas possam ocupar o horário liberado."
     },
     {
-      pergunta: `O que esperar do tratamento em ${especialidade}?`,
+      pergunta: `O que esperar do tratamento em ${doctorData.especialidade}?`,
       resposta: "O tratamento é sempre individualizado e baseado em uma avaliação cuidadosa. Após a consulta, explicarei as opções disponíveis, seus benefícios e possíveis efeitos. Cada caso é único e o acompanhamento é fundamental para bons resultados."
     }
   ];
@@ -88,7 +81,7 @@ const FAQSection = ({ especialidade, perguntas }: FAQSectionProps) => {
           {/* Accordion de FAQs */}
           <div className="animate-slide-up" style={{ animationDelay: "0.1s" }}>
             <Accordion type="single" collapsible className="space-y-3">
-              {perguntasDefault.map((faq, index) => (
+              {perguntas.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}

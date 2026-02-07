@@ -1,27 +1,9 @@
-import { Instagram, Facebook, Linkedin, Heart } from "lucide-react";
-
-interface FooterProps {
-  nome: string;
-  crm: string;
-  uf: string;
-  especialidade: string;
-  redesSociais?: {
-    instagram?: string;
-    facebook?: string;
-    linkedin?: string;
-  };
-}
+import { Instagram, Heart } from "lucide-react";
+import { doctorData } from "@/types/doctor";
 
 // Footer da página
-// TODO: Conectar props com dados dinâmicos do Med.ID
-const Footer = ({ nome, crm, uf, especialidade, redesSociais }: FooterProps) => {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { icon: Instagram, href: redesSociais?.instagram, label: "Instagram" },
-    { icon: Facebook, href: redesSociais?.facebook, label: "Facebook" },
-    { icon: Linkedin, href: redesSociais?.linkedin, label: "LinkedIn" },
-  ].filter(link => link.href);
 
   return (
     <footer className="py-12 bg-foreground text-primary-foreground/80">
@@ -30,28 +12,25 @@ const Footer = ({ nome, crm, uf, especialidade, redesSociais }: FooterProps) => 
           {/* Info do médico */}
           <div className="text-center md:text-left">
             <p className="font-semibold text-primary-foreground mb-1">
-              Dr(a). {nome}
+              Dr(a). {doctorData.nome}
             </p>
             <p className="text-sm">
-              {especialidade} • CRM {crm}/{uf}
+              {doctorData.especialidade} • CRM {doctorData.crm}
             </p>
           </div>
 
           {/* Redes sociais */}
-          {socialLinks.length > 0 && (
+          {doctorData.instagram && !doctorData.instagram.includes("{{") && (
             <div className="flex items-center gap-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+              <a
+                href={doctorData.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
             </div>
           )}
 

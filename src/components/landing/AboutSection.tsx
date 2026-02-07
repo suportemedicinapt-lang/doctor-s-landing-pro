@@ -1,20 +1,13 @@
 import { Award, GraduationCap, Heart } from "lucide-react";
-
-interface AboutSectionProps {
-  nome: string;
-  especialidade: string;
-  anosExperiencia: number;
-  bioCompleta: string[];
-}
+import { doctorData } from "@/types/doctor";
 
 // Seção "Sobre o Médico"
-// TODO: Conectar props com dados dinâmicos do Med.ID
-const AboutSection = ({ nome, especialidade, anosExperiencia, bioCompleta }: AboutSectionProps) => {
+const AboutSection = () => {
   const destaques = [
     {
       icone: Award,
-      titulo: `${anosExperiencia}+ anos`,
-      subtitulo: "de experiência"
+      titulo: "Experiência",
+      subtitulo: "comprovada"
     },
     {
       icone: GraduationCap,
@@ -39,17 +32,17 @@ const AboutSection = ({ nome, especialidade, anosExperiencia, bioCompleta }: Abo
                 Conheça
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Sobre Dr(a). {nome}
+                Sobre Dr(a). {doctorData.nome}
               </h2>
             </div>
 
             <div className="space-y-4">
-              {/* TODO: substituir por bioCompleta dinâmica */}
-              {bioCompleta.map((paragrafo, index) => (
-                <p key={index} className="text-muted-foreground leading-relaxed text-lg">
-                  {paragrafo}
-                </p>
-              ))}
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                {doctorData.bio}
+              </p>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                {doctorData.formacao}
+              </p>
             </div>
 
             {/* Cards de destaque */}
@@ -77,7 +70,6 @@ const AboutSection = ({ nome, especialidade, anosExperiencia, bioCompleta }: Abo
 
               <blockquote className="pt-4">
                 <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed italic">
-                  {/* TODO: substituir por citação dinâmica do médico */}
                   Acredito que a medicina vai além do tratamento. É sobre ouvir, compreender e caminhar junto com cada paciente em sua jornada de saúde.
                 </p>
                 <footer className="mt-6 flex items-center gap-3">
@@ -85,8 +77,8 @@ const AboutSection = ({ nome, especialidade, anosExperiencia, bioCompleta }: Abo
                     <span className="text-lg">👨‍⚕️</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Dr(a). {nome}</p>
-                    <p className="text-sm text-muted-foreground">{especialidade}</p>
+                    <p className="font-semibold text-foreground">Dr(a). {doctorData.nome}</p>
+                    <p className="text-sm text-muted-foreground">{doctorData.especialidade}</p>
                   </div>
                 </footer>
               </blockquote>

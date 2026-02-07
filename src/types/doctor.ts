@@ -1,62 +1,65 @@
-// Tipos para dados dinâmicos do médico (Med.ID)
-// TODO: Conectar com API do MedMarketing Pro
+/**
+ * Tipos e dados placeholder para o template médico
+ * Todas as variáveis usam formato {{variavel}} para substituição
+ */
 
 export interface DoctorData {
   nome: string;
-  crm: string;
-  uf: string;
   especialidade: string;
-  anosExperiencia: number;
-  cidadeBairro: string;
-  bioCurta: string;
-  bioCompleta: string[];
+  crm: string;
   telefone: string;
   whatsapp: string;
-  foto?: string;
-  redesSociais?: {
-    instagram?: string;
-    facebook?: string;
-    linkedin?: string;
-  };
+  email: string;
+  endereco: string;
+  instagram: string;
+  bio: string;
+  formacao: string;
+  foto: string;
 }
 
-export interface AreaAtuacao {
+export interface ServicoData {
   titulo: string;
   descricao: string;
-  icone?: string;
+  icone: string;
 }
 
-export interface PassoAtendimento {
-  numero: number;
-  titulo: string;
-  descricao: string;
-}
+// =====================================================
+// DADOS PLACEHOLDER - SERÃO SUBSTITUÍDOS DINAMICAMENTE
+// =====================================================
 
-export interface PerguntaFAQ {
-  pergunta: string;
-  resposta: string;
-}
-
-// Dados de exemplo/placeholder para preview
-export const doctorPlaceholder: DoctorData = {
-  nome: "{{NOME_MEDICO}}",
-  crm: "{{CRM}}",
-  uf: "{{UF}}",
-  especialidade: "{{ESPECIALIDADE}}",
-  anosExperiencia: 10, // TODO: substituir por dados dinâmicos
-  cidadeBairro: "{{CIDADE_BAIRRO}}",
-  bioCurta: "{{BIO_CURTA}}",
-  bioCompleta: [
-    "Com mais de {{ANOS_EXPERIENCIA}} anos dedicados à {{ESPECIALIDADE}}, minha prática é guiada pelo compromisso com um atendimento humanizado e baseado em evidências científicas.",
-    "Formação em instituições de referência e atualização constante permitem oferecer aos meus pacientes as abordagens mais atuais e seguras disponíveis.",
-    "Acredito que cada paciente é único e merece atenção individualizada, com escuta ativa e orientações claras sobre sua saúde."
-  ],
-  telefone: "{{TELEFONE}}",
-  whatsapp: "{{WHATSAPP}}",
-  foto: undefined, // TODO: substituir por URL da foto do médico
-  redesSociais: {
-    instagram: "{{INSTAGRAM}}",
-    facebook: "{{FACEBOOK}}",
-    linkedin: "{{LINKEDIN}}"
-  }
+export const doctorData: DoctorData = {
+  nome: "{{nome}}",
+  especialidade: "{{especialidade}}",
+  crm: "{{crm}}",
+  telefone: "{{telefone}}",
+  whatsapp: "{{whatsapp}}",
+  email: "{{email}}",
+  endereco: "{{endereco}}",
+  instagram: "{{instagram}}",
+  bio: "{{bio}}",
+  formacao: "{{formacao}}",
+  foto: "{{foto}}",
 };
+
+export const servicosData: ServicoData[] = [
+  {
+    titulo: "Consultas",
+    descricao: "Atendimento completo com avaliação detalhada e orientação personalizada.",
+    icone: "Stethoscope",
+  },
+  {
+    titulo: "Acompanhamento",
+    descricao: "Seguimento contínuo para monitorar a evolução do tratamento.",
+    icone: "HeartPulse",
+  },
+  {
+    titulo: "Exames",
+    descricao: "Solicitação e interpretação de exames complementares.",
+    icone: "FileSearch",
+  },
+  {
+    titulo: "Orientação",
+    descricao: "Orientações sobre prevenção e hábitos saudáveis.",
+    icone: "ClipboardList",
+  },
+];
